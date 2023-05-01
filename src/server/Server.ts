@@ -3,8 +3,8 @@ import express from 'express';
 const server = express();
 
 
-server.get('/', (req, res) => {
-   return res.send('Olá, My Friends!');
+server.get('/', (_, res) => {
+  return res.send('Olá, My Friends!');
 });
 
-export { server }
+export { server };
