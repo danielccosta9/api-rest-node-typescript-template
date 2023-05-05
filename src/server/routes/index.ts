@@ -1,16 +1,17 @@
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
+import { ResidenciaCrontroller } from './../controllers';
+
 const router = Router();
 
 router.get('/', (_, res) => {
     return res.send('Olá, My Friends!');
 });
 
-router.post('/teste', (req, res) => {
-    console.log(req.body);
-    return res.status(StatusCodes.UNAUTHORIZED).json(req.body);
-});
 
+router.post('/residencia', ResidenciaCrontroller.create, (req, res) => {
+    return res.status(StatusCodes.CREATED).json(req.body);
+});
 
 export { router };
