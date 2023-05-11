@@ -10,8 +10,9 @@ router.get('/', (_, res) => {
 });
 
 
-router.post('/residencia', ResidenciaCrontroller.create, (req, res) => {
-    return res.status(StatusCodes.CREATED).json(req.body);
-});
+router.post('/residencias',
+    ResidenciaCrontroller.createValidation, 
+    ResidenciaCrontroller.create
+);
 
 export { router };
