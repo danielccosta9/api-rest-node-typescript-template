@@ -10,14 +10,12 @@ interface IResidencias {
 }
 export const createValidation = validation((getSchema) => ({
     body: getSchema<IResidencias>(yup.object().shape({
-        tipo: yup.string().required(),
-        nome: yup.string().required().min(3),
+        tipo: yup.string().required().matches(/^(BAIRRO|SITIO)$/),
+        nome: yup.string().required().min(3).matches(/^[A-Z ]+$/),
     })),
 }));
 
 export const create = async (req: Request<{}, {}, IResidencias>, res: Response) => {
-    console.log(req.body);
 
-
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não implementado!');
+    return res.status(StatusCodes.CREATED).json(1);
 };
