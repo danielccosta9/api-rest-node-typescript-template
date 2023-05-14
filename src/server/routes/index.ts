@@ -10,9 +10,30 @@ router.get('/', (_, res) => {
 });
 
 
+
+router.get('/residencias',
+    ResidenciaCrontroller.getAllValidation,
+    ResidenciaCrontroller.getAll
+);
+
+router.get('/residencias/:id',
+    ResidenciaCrontroller.getByIdValidation,
+    ResidenciaCrontroller.getById
+);
+
 router.post('/residencias',
     ResidenciaCrontroller.createValidation, 
     ResidenciaCrontroller.create
+);
+
+router.put('/residencias/:id',
+    ResidenciaCrontroller.updateByIdValidation,
+    ResidenciaCrontroller.updateById
+);
+
+router.delete('/residencias/:id',
+    ResidenciaCrontroller.deleteByIdValidation,
+    ResidenciaCrontroller.deleteById
 );
 
 export { router };
