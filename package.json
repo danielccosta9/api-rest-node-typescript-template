@@ -17,7 +17,7 @@
     "dev": "yarn ts-node-dev ./src/index.ts",
     "test": "jest",
     "postinstall": "tsc",
-    "build": "tsc",
+    "build": "rm -rf ./build && tsc",
     "start": "node ./build/index.js"
   },
   "devDependencies": {
