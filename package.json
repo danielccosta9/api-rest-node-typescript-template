@@ -8,8 +8,8 @@
     "dev": "yarn ts-node-dev ./src/index.ts",
     "test": "jest",
     "postinstall": "tsc",
-    "build": "yarn tsc",
-    "start": "node ./build/index.js"
+    "build": "rm -rf ./dist && tsc",
+    "start": "node ./dist/index.js"
   },
   "dependencies": {
     "@types/jest": "^29.5.1",
