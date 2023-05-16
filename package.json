@@ -1,7 +1,7 @@
 {
   "name": "api-rest-node-typescript-template",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "index.js",
   "author": "Daniel C. Costa",
   "license": "MIT",
   "dependencies": {
