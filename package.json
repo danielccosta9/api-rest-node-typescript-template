@@ -1,7 +1,7 @@
 {
   "name": "api-rest-node-typescript-template",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./build/index.js",
   "author": "Daniel C. Costa",
   "license": "MIT",
   "dependencies": {
@@ -15,7 +15,9 @@
   },
   "scripts": {
     "dev": "yarn ts-node-dev ./src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "tsc",
+    "production": "node ./build/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
@@ -26,5 +28,8 @@
     "supertest": "^6.3.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
