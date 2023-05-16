@@ -17,7 +17,8 @@
     "dev": "yarn ts-node-dev ./src/index.ts",
     "test": "jest",
     "postinstall": "tsc",
-    "production": "node ./build/index.js"
+    "build": "tsc",
+    "start": "node ./build/index.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
