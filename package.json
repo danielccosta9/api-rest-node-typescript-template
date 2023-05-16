@@ -8,7 +8,7 @@
     "dev": "yarn ts-node-dev ./src/index.ts",
     "test": "jest",
 		"build": "rm -rf ./build && tsc",
-		"start": "node ./dibuildst/index.js"
+		"start": "node ./build/index.js"
   },
   "dependencies": {
     "@types/jest": "^29.5.1",
