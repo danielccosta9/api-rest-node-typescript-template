@@ -37,7 +37,8 @@ router.get('/residencias/:id',
 );
 
 router.post('/residencias',
-    ResidenciaCrontroller.createValidation,     ResidenciaCrontroller.create
+    ResidenciaCrontroller.createValidation,     
+    ResidenciaCrontroller.create
 );
 
 router.put('/residencias/:id',
