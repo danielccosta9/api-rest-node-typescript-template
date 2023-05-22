@@ -5,8 +5,8 @@ import { ETableNames } from '../../ETableNames';
 export const UpdateById = async (id: number, residencias: Omit<IResidencia, 'id'>): Promise<void | Error> => {
     try {
         const result = await Knex(ETableNames.residencias)
-            .update(residencias)
-            .where('id', '=', id);
+            .where({ id })
+            .update(residencias);
 
         if (result > 0) {
             return;

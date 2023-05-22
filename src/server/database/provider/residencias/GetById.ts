@@ -6,8 +6,7 @@ export const getById = async (id: number): Promise<IResidencia | Error> => {
 
     try {
         const result = await Knex(ETableNames.residencias)
-            .select('*')
-            .where('id', '=', id)
+            .where({ id })
             .first();
 
         if (result) {

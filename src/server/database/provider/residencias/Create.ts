@@ -8,7 +8,6 @@ export const create = async (residencias: Omit<IResidencia, 'id'>): Promise<numb
         const [result] = await Knex(ETableNames.residencias)
             .insert(residencias)
             .returning('id');
-
         if (typeof result === 'object') {
             return result.id;
         } else if (typeof result === 'number') {
