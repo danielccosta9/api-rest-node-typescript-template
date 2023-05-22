@@ -5,9 +5,11 @@
   "author": "Daniel C. Costa",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn ts-node-dev ./src/index.ts",
+    "dev": "ts-node-dev ./src/index.ts",
     "build": "rm -rf ./build && tsc",
     "start": "node ./build/index.js",
+    "production": "node ./build/index.js",
+    "postinstall": "tsc",
     "test": "jest",
     "knex:migrate": "knex --knexfile ./src/server/database/knex/Environmente.ts migrate:latest",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environmente.ts migrate:rollback --all",
