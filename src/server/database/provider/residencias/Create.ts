@@ -1,22 +1,21 @@
-import { Knex } from '../../knex';
-import { IResidencia } from '../../models';
 import { ETableNames } from '../../ETableNames';
+import { IResidencia } from '../../models';
+import { Knex } from '../../knex';
 
-export const create = async (residencias: Omit<IResidencia, 'id'>): Promise<number | Error> => {
 
+export const create = async (residencia: Omit<IResidencia, 'id'>): Promise<number | Error> => {
     try {
-        const [result] = await Knex(ETableNames.residencias)
-            .insert(residencias)
-            .returning('id');
+        const [result] = await Knex(ETableNames.residencias).insert(residencia).returning('id');
+
         if (typeof result === 'object') {
             return result.id;
         } else if (typeof result === 'number') {
             return result;
-        } else {
-            return new Error('Erro ao criar residencia');
         }
+
+        return new Error('Erro ao cadastrar o registro');
     } catch (error) {
         console.log(error);
-        return new Error('Error ao criar residencia');
+        return new Error('Erro ao cadastrar o registro');
     }
 };
