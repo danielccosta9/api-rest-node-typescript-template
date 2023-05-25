@@ -1,5 +1,6 @@
 
 
 export enum ETableNames {
-    residencias = 'residencias'
+    residencias = 'residencias',
+    pessoas = 'pessoas'
 }

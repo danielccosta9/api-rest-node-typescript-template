@@ -1,1 +1,2 @@
-export * from './Residencias';
+export * from './Residencia';
+export * from './Pessoa';
