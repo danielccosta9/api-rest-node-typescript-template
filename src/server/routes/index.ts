@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { ResidenciaCrontroller, PessoaCrontroller } from './../controllers';
+import { ResidenciaCrontroller, PessoaCrontroller, UsuarioCrontroller } from './../controllers';
 
 const router = Router();
 
@@ -13,6 +13,8 @@ router.get('/', (_, res) => {
         <ul>
             <li><a href="/residencias">GET /residencias</a></li>
             <li><a href="/pessoas">GET /pessoas</a></li>
+            <li><a href="/entrar">POST /entrar</a></li>
+            <li><a href="/cadastrar">POST /cadastrar</a></li>
         </ul>
         <footer style="margin-top: 100px;"
         >
@@ -39,5 +41,8 @@ router.post('/pessoas', PessoaCrontroller.createValidation,      PessoaCrontroll
 router.put('/pessoas/:id', PessoaCrontroller.updateByIdValidation, PessoaCrontroller.updateById);
 router.delete('/pessoas/:id', PessoaCrontroller.deleteByIdValidation, PessoaCrontroller.deleteById);
 
+
+router.post('/entrar', UsuarioCrontroller.signInValidation, UsuarioCrontroller.signIn);
+router.post('/cadastrar', UsuarioCrontroller.signUpValidation, UsuarioCrontroller.signUp);
 
 export { router };

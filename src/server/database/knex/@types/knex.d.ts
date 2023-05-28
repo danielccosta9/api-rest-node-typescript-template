@@ -1,9 +1,9 @@
-import { IResidencia, IPessoa } from '../../models';
+import { IResidencia, IPessoa, IUsuario } from '../../models';
 
 declare module 'knex/types/tables' {
     interface Tables {
         residencias: IResidencia;
         pessoas: IPessoa;
-        // usuario: IUsuario;
+        usuarios: IUsuario;
     }
 }
