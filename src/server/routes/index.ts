@@ -13,8 +13,6 @@ router.get('/', (_, res) => {
         <ul>
             <li><a href="/residencias">GET /residencias</a></li>
             <li><a href="/pessoas">GET /pessoas</a></li>
-            <li><a href="/entrar">POST /entrar</a></li>
-            <li><a href="/cadastrar">POST /cadastrar</a></li>
         </ul>
         <footer style="margin-top: 100px;"
         >
