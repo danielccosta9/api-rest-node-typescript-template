@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { ResidenciaCrontroller, PessoaCrontroller, UsuarioCrontroller } from './../controllers';
+import { ensureAuthenticated } from '../shared/middleware';
 
 const router = Router();
 
@@ -26,18 +27,18 @@ router.get('/', (_, res) => {
 
 
 
-router.get('/residencias', ResidenciaCrontroller.getAllValidation, ResidenciaCrontroller.getAll);
-router.get('/residencias/:id', ResidenciaCrontroller.getByIdValidation, ResidenciaCrontroller.getById);
-router.post('/residencias', ResidenciaCrontroller.createValidation,      ResidenciaCrontroller.create);
-router.put('/residencias/:id', ResidenciaCrontroller.updateByIdValidation, ResidenciaCrontroller.updateById);
-router.delete('/residencias/:id', ResidenciaCrontroller.deleteByIdValidation, ResidenciaCrontroller.deleteById);
+router.get('/residencias', ensureAuthenticated, ResidenciaCrontroller.getAllValidation, ResidenciaCrontroller.getAll);
+router.get('/residencias/:id', ensureAuthenticated, ResidenciaCrontroller.getByIdValidation, ResidenciaCrontroller.getById);
+router.post('/residencias', ensureAuthenticated, ResidenciaCrontroller.createValidation,      ResidenciaCrontroller.create);
+router.put('/residencias/:id', ensureAuthenticated, ResidenciaCrontroller.updateByIdValidation, ResidenciaCrontroller.updateById);
+router.delete('/residencias/:id', ensureAuthenticated, ResidenciaCrontroller.deleteByIdValidation, ResidenciaCrontroller.deleteById);
 
 
-router.get('/pessoas', PessoaCrontroller.getAllValidation, PessoaCrontroller.getAll);
-router.get('/pessoas/:id', PessoaCrontroller.getByIdValidation, PessoaCrontroller.getById);
-router.post('/pessoas', PessoaCrontroller.createValidation,      PessoaCrontroller.create);
-router.put('/pessoas/:id', PessoaCrontroller.updateByIdValidation, PessoaCrontroller.updateById);
-router.delete('/pessoas/:id', PessoaCrontroller.deleteByIdValidation, PessoaCrontroller.deleteById);
+router.get('/pessoas', ensureAuthenticated, PessoaCrontroller.getAllValidation, PessoaCrontroller.getAll);
+router.get('/pessoas/:id', ensureAuthenticated, PessoaCrontroller.getByIdValidation, PessoaCrontroller.getById);
+router.post('/pessoas', ensureAuthenticated, PessoaCrontroller.createValidation,      PessoaCrontroller.create);
+router.put('/pessoas/:id', ensureAuthenticated, PessoaCrontroller.updateByIdValidation, PessoaCrontroller.updateById);
+router.delete('/pessoas/:id', ensureAuthenticated, PessoaCrontroller.deleteByIdValidation, PessoaCrontroller.deleteById);
 
 
 router.post('/entrar', UsuarioCrontroller.signInValidation, UsuarioCrontroller.signIn);
