@@ -7,7 +7,7 @@ export const seed = async (knex: Knex) => {
     const [{ count }] = await knex(ETableNames.residencias).count<[{ count: number }]>('* as count');
     if (!Number.isInteger(count) || Number(count) > 0) return;
 
-    const cidadesToInsert = cidadesDaParaiba.map(nomeDaCidade => ({ nome: nomeDaCidade }));
+    const cidadesToInsert = cidadesDaParaiba.map(nomeDaCidade => ({ nome: nomeDaCidade, tipo: 'cidade' }));
     await knex(ETableNames.residencias).insert(cidadesToInsert);
 };
 
