@@ -4,58 +4,46 @@ import { testServer } from '../jest.setup';
 
 
 describe('Pessoas - GetById', () => {
-  let accessToken = '';
-  beforeAll(async () => {
-    const email = 'getbyid-pessoas@gmail.com';
-    await testServer.post('/cadastrar').send({ email, senha: '123456', nome: 'Teste' });
-    const signInRes = await testServer.post('/entrar').send({ email, senha: '123456' });
 
-    accessToken = signInRes.body.accessToken;
-  });
+    let residenciaId: number | undefined = undefined;
+    beforeAll(async () => {
+        const resResidencia = await testServer
+            .post('/residencias')
+            .send({
+                tipo: 'BAIRRO',
+                nome: 'CENTRO'
+            });
+        residenciaId = resResidencia.body;
+    });
 
-  let cidadeId: number | undefined = undefined;
-  beforeAll(async () => {
-    const resCidade = await testServer
-      .post('/cidades')
-      .set({ Authorization: `Bearer ${accessToken}` })
-      .send({ nome: 'Teste' });
+    it('Busca registro por id', async () => {
 
-    cidadeId = resCidade.body;
-  });
+        const res1 = await testServer
+            .post('/pessoas')
+            .send({ 
+                nome: 'pessoa 1',
+                cpf: '000.000.000-00',
+                nascimento: '10/10/2010',
+                telefone: '(83) 0000-0000',
+                residenciaId
+            });
 
-  it('Tenta consultar sem usar token de autenticação', async () => {
-    const res1 = await testServer
-      .get('/pessoas/1')
-      .send();
+        expect(res1.statusCode).toEqual(StatusCodes.CREATED);
 
-    expect(res1.statusCode).toEqual(StatusCodes.UNAUTHORIZED);
-    expect(res1.body).toHaveProperty('errors.default');
-  });
-  it('Busca registro por id', async () => {
-    const res1 = await testServer
-      .post('/pessoas')
-      .set({ Authorization: `Bearer ${accessToken}` })
-      .send({
-        cidadeId,
-        nomeCompleto: 'Juca silva',
-        email: 'jucagetbyid@gmail.com',
-      });
-    expect(res1.statusCode).toEqual(StatusCodes.CREATED);
+        const resBuscada = await testServer
+            .get(`/pessoas/${res1.body}`)
+            .send();
 
-    const resBuscada = await testServer
-      .get(`/pessoas/${res1.body}`)
-      .set({ Authorization: `Bearer ${accessToken}` })
-      .send();
-    expect(resBuscada.statusCode).toEqual(StatusCodes.OK);
-    expect(resBuscada.body).toHaveProperty('nomeCompleto');
-  });
-  it('Tenta buscar registro que não existe', async () => {
-    const res1 = await testServer
-      .get('/pessoas/99999')
-      .set({ Authorization: `Bearer ${accessToken}` })
-      .send();
+        expect(resBuscada.statusCode).toEqual(StatusCodes.OK);
+        expect(resBuscada.body).toHaveProperty('nome');
+    });
+    it('Tenta buscar registro que não existe', async () => {
 
-    expect(res1.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
-    expect(res1.body).toHaveProperty('errors.default');
-  });
+        const res1 = await testServer
+            .get('/pessoas/99999')
+            .send();
+
+        expect(res1.statusCode).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
+        expect(res1.body).toHaveProperty('errors.default');
+    });
 });
