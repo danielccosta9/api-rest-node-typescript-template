@@ -8,7 +8,6 @@ export async function up(knex: Knex) {
         .createTable(ETableNames.residencias, 
             table => {
                 table.bigIncrements('id').primary().index();
-                table.string('tipo', 30).checkLength('<=',30).notNullable();
                 table.string('nome', 150).checkLength('<=',150).notNullable();
             })
         .then(() => console.log(`[Migration] Table ${ETableNames.residencias} created!`));        

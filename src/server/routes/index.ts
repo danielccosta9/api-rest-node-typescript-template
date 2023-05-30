@@ -9,6 +9,12 @@ router.get('/', (_, res) => {
     return res.send(
         `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
         <h1>API está rodando 🚀</h1> 
+        <h2>Rotas disponíveis:</h2>
+        <h3>Residencias</h3>
+        <ul>
+            <li><a href="/residencias">GET /residencias</a></li>
+            <li><a href="/pessoas">GET /pessoas</a></li>
+        </ul>
         <footer style="margin-top: 100px;"
         >
             <p> 🧑‍💻 Desenvolvido por: <a href="https://www.instagram.com/danic.costa/" target="_blank">Daniel C. Costa</a></p>
